@@ -201,6 +201,17 @@
       background: linear-gradient(90deg, rgba(148,163,184,0.14), rgba(148,163,184,0.3), rgba(148,163,184,0.14));
       box-shadow: inset 0 0 0 1px rgba(148,163,184,0.12);
     }
+    .timeline-axis::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      transform: translateY(-50%);
+      background: repeating-linear-gradient(90deg, rgba(248,250,252,0.26) 0 1px, transparent 1px 12.5%);
+      opacity: 0.55;
+    }
     .timeline-span {
       position: absolute;
       left: var(--start);
@@ -571,25 +582,25 @@
   <section id="experience">
     <div class="section-label fade-in">Timeline</div>
     <div class="section-title fade-in">Where I've worked</div>
-    <p class="section-sub fade-in">A horizontal work timeline from 2008 to 2026, with each role shown as a colored span.</p>
+    <p class="section-sub fade-in">A horizontal work timeline from 2018 to 2026, with each role shown as a colored span.</p>
 
     <div class="timeline-visual fade-in">
       <div class="timeline-axis-wrap">
         <div class="timeline-years">
-          <span>2008</span>
+          <span>2018</span>
           <span>2026</span>
         </div>
-        <div class="timeline-axis" aria-label="Work timeline from 2008 to 2026">
-          <div class="timeline-span" tabindex="0" style="--start: 59.2%; --width: 17.2%; --top: 3.35rem; --job-color: #38bdf8; --job-glow: rgba(56,189,248,0.38);">
+        <div class="timeline-axis" aria-label="Work timeline from 2018 to 2026">
+          <div class="timeline-span" tabindex="0" style="--start: 6%; --width: 40%; --top: 3.35rem; --job-color: #38bdf8; --job-glow: rgba(56,189,248,0.38);">
             <div class="span-tooltip"><strong>Anzy, Wizikey, ARM Infoserve</strong><span>Aug 2018 - Sep 2021</span></div>
           </div>
-          <div class="timeline-span" tabindex="0" style="--start: 78.2%; --width: 13%; --top: 2.45rem; --job-color: #22c55e; --job-glow: rgba(34,197,94,0.34);">
+          <div class="timeline-span" tabindex="0" style="--start: 51%; --width: 28%; --top: 2.45rem; --job-color: #22c55e; --job-glow: rgba(34,197,94,0.34);">
             <div class="span-tooltip"><strong>Verra Mobility US</strong><span>Feb 2022 - May 2024</span></div>
           </div>
-          <div class="timeline-span" tabindex="0" style="--start: 80.6%; --width: 4%; --top: 1.55rem; --job-color: #f59e0b; --job-glow: rgba(245,158,11,0.34);">
+          <div class="timeline-span" tabindex="0" style="--start: 55%; --width: 3%; --top: 1.55rem; --job-color: #f59e0b; --job-glow: rgba(245,158,11,0.34);">
             <div class="span-tooltip"><strong>Oracle US Internship</strong><span>Jun 2022 - Aug 2022</span></div>
           </div>
-          <div class="timeline-span" tabindex="0" style="--start: 91.2%; --width: 8.8%; --top: 0.65rem; --job-color: #818cf8; --job-glow: rgba(129,140,248,0.38);">
+          <div class="timeline-span" tabindex="0" style="--start: 79%; --width: 20%; --top: 0.65rem; --job-color: #818cf8; --job-glow: rgba(129,140,248,0.38);">
             <div class="span-tooltip"><strong>Oracle US</strong><span>May 2024 - Apr 2026</span></div>
           </div>
         </div>
