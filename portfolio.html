@@ -70,7 +70,16 @@
       background: radial-gradient(ellipse 60% 55% at 70% 40%, rgba(99,102,241,0.18) 0%, transparent 70%),
                   radial-gradient(ellipse 40% 40% at 15% 70%, rgba(56,189,248,0.11) 0%, transparent 70%);
     }
-    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .hero-layout {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .hero-content { max-width: 720px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.35);
@@ -110,6 +119,87 @@
       background: transparent;
     }
     .btn-outline:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .hero-visual {
+      background: linear-gradient(145deg, rgba(23,32,51,0.86), rgba(11,16,32,0.72));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem;
+      box-shadow: 0 24px 70px rgba(15,23,42,0.34);
+    }
+    .visual-kicker {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .company-map {
+      position: relative;
+      display: grid;
+      gap: 0.8rem;
+      padding-top: 1.8rem;
+    }
+    .company-map::before {
+      content: '';
+      position: absolute;
+      top: 0.55rem;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, #38bdf8, #22c55e, #f59e0b, #818cf8);
+      opacity: 0.75;
+    }
+    .company-axis {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .company-link {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(15,23,42,0.74);
+      border: 1px solid color-mix(in srgb, var(--job-color) 45%, var(--border));
+      border-left: 5px solid var(--job-color);
+      border-radius: 14px;
+      padding: 1rem;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .company-link:hover,
+    .company-link:focus {
+      transform: translateX(6px);
+      background: rgba(15,23,42,0.94);
+      box-shadow: 0 14px 38px var(--job-glow);
+      outline: none;
+    }
+    .company-name {
+      display: block;
+      color: var(--job-color);
+      font-size: clamp(1.2rem, 2vw, 1.65rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+    }
+    .company-role {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 0.35rem;
+    }
+    .company-link small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-top: 0.35rem;
+    }
 
     /* ── IMPACT ── */
     #impact {
@@ -289,6 +379,7 @@
       border-radius: 12px;
       padding: 1rem;
       background: rgba(11,16,32,0.42);
+      scroll-margin-top: 7rem;
       transition: transform .2s ease, border-color .2s ease, background .2s ease;
     }
     .timeline-card:hover {
@@ -468,6 +559,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-visual { margin-top: 1rem; }
       .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .resume-panel { grid-template-columns: 1fr; }
       .nav-links { display: none; }
@@ -498,17 +591,46 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-bg"></div>
-    <div class="hero-content fade-in visible">
-      <div class="hero-badge">Open to new opportunities · United States</div>
-      <h1>I build BI systems that turn messy data into trusted decisions.</h1>
-      <p class="hero-sub">
-        Business Intelligence Analyst with 6+ years across Oracle, Verra Mobility, Snowflake, Oracle ADW,
-        Power BI, and Oracle Analytics Cloud. I specialize in governed reporting, dashboard modernization,
-        and analytics pipelines that improve speed, trust, and adoption.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">See Business Impact →</a>
-        <a href="Rishabh_Singh_Resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
+    <div class="hero-layout">
+      <div class="hero-content fade-in visible">
+        <div class="hero-badge">Open to new opportunities · United States</div>
+        <h1>I build BI systems that turn messy data into trusted decisions.</h1>
+        <p class="hero-sub">
+          Business Intelligence Analyst with 6+ years across Oracle, Verra Mobility, Snowflake, Oracle ADW,
+          Power BI, and Oracle Analytics Cloud. I specialize in governed reporting, dashboard modernization,
+          and analytics pipelines that improve speed, trust, and adoption.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">See Business Impact →</a>
+          <a href="Rishabh_Singh_Resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-in visible" aria-label="Clickable career map">
+        <div class="visual-kicker">Career Map · Click a Company</div>
+        <div class="company-map">
+          <div class="company-axis"><span>2018</span><span>2026</span></div>
+          <a href="#timeline-india" class="company-link" style="--job-color: #38bdf8; --job-glow: rgba(56,189,248,0.28);">
+            <span class="company-name">Anzy · Wizikey · ARM</span>
+            <span class="company-role">Data Analyst</span>
+            <small>SQL, Tableau, Python, NLP, graph analytics</small>
+          </a>
+          <a href="#timeline-verra" class="company-link" style="--job-color: #22c55e; --job-glow: rgba(34,197,94,0.26);">
+            <span class="company-name">Verra Mobility</span>
+            <span class="company-role">Business Intelligence Analyst</span>
+            <small>Power BI, SharePoint, Power Automate, reporting layers</small>
+          </a>
+          <a href="#timeline-oracle-intern" class="company-link" style="--job-color: #f59e0b; --job-glow: rgba(245,158,11,0.26);">
+            <span class="company-name">Oracle Internship</span>
+            <span class="company-role">Analytics Consultant Intern</span>
+            <small>OAC migrations, ADW, reusable reporting templates</small>
+          </a>
+          <a href="#timeline-oracle" class="company-link" style="--job-color: #818cf8; --job-glow: rgba(129,140,248,0.3);">
+            <span class="company-name">Oracle US</span>
+            <span class="company-role">Business Intelligence Analyst</span>
+            <small>Governed pipelines, executive dashboards, KPI visibility</small>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -607,28 +729,28 @@
       </div>
 
       <div class="timeline-legend">
-        <div class="timeline-card" style="--job-color: #818cf8;">
+        <div id="timeline-oracle" class="timeline-card" style="--job-color: #818cf8;">
           <div class="timeline-date">May 2024 - Apr 2026</div>
           <div class="timeline-name">Oracle US</div>
           <div class="timeline-role">Business Intelligence Analyst</div>
           <div class="timeline-pointer">Built governed analytics pipelines and modernized executive dashboards for planning, performance, and leadership reporting.</div>
         </div>
 
-        <div class="timeline-card" style="--job-color: #22c55e;">
+        <div id="timeline-verra" class="timeline-card" style="--job-color: #22c55e;">
           <div class="timeline-date">Feb 2022 - May 2024</div>
           <div class="timeline-name">Verra Mobility US</div>
           <div class="timeline-role">Business Intelligence Analyst</div>
           <div class="timeline-pointer">Created reporting layers and automated stakeholder workflows across Power BI, SharePoint, Outlook, and Power Automate.</div>
         </div>
 
-        <div class="timeline-card" style="--job-color: #f59e0b;">
+        <div id="timeline-oracle-intern" class="timeline-card" style="--job-color: #f59e0b;">
           <div class="timeline-date">Jun 2022 - Aug 2022</div>
           <div class="timeline-name">Oracle US</div>
           <div class="timeline-role">Analytics Consultant Intern</div>
           <div class="timeline-pointer">Supported Oracle Analytics Cloud migrations and reusable reporting templates for enterprise analytics use cases.</div>
         </div>
 
-        <div class="timeline-card" style="--job-color: #38bdf8;">
+        <div id="timeline-india" class="timeline-card" style="--job-color: #38bdf8;">
           <div class="timeline-date">Aug 2018 - Sep 2021</div>
           <div class="timeline-name">Anzy, Wizikey, ARM Infoserve</div>
           <div class="timeline-role">Data Analyst</div>
