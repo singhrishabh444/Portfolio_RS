@@ -175,29 +175,59 @@
 
     /* ── EXPERIENCE ── */
     #experience { background: var(--dark); }
-    .timeline { max-width: 800px; }
-    .exp-item {
-      display: grid; grid-template-columns: 180px 1fr; gap: 2rem;
-      padding: 2rem 0; border-bottom: 1px solid var(--border);
+    .timeline-chart {
+      max-width: 940px;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-meta { padding-top: 0.15rem; }
-    .exp-date { font-size: 0.8rem; color: var(--muted); font-weight: 500; margin-bottom: 0.3rem; }
-    .exp-company {
-      font-size: 0.82rem; font-weight: 700;
+    .timeline-chart::before {
+      content: '';
+      position: absolute;
+      left: 10.5rem;
+      top: 0.4rem;
+      bottom: 0.4rem;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--border), transparent);
+    }
+    .timeline-point {
+      display: grid;
+      grid-template-columns: 9rem 2.8rem minmax(0, 1fr);
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 0;
+    }
+    .timeline-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: right;
+    }
+    .timeline-dot {
+      width: 0.95rem;
+      height: 0.95rem;
+      border-radius: 999px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      border: 3px solid var(--dark);
+      box-shadow: 0 0 0 1px var(--border);
+      justify-self: center;
+      z-index: 1;
     }
-    .exp-content h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .exp-content ul {
-      list-style: none; margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.45rem;
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
     }
-    .exp-content ul li {
-      font-size: 0.87rem; color: var(--muted); line-height: 1.65; padding-left: 1rem; position: relative;
-    }
-    .exp-content ul li::before {
-      content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.15rem;
+    .timeline-name { font-size: 1rem; font-weight: 800; }
+    .timeline-type {
+      color: var(--accent2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-top: 0.2rem;
+      text-transform: uppercase;
     }
 
     /* ── PROJECTS ── */
@@ -350,7 +380,18 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .timeline-chart::before { left: 0.45rem; }
+      .timeline-point {
+        grid-template-columns: 1rem minmax(0, 1fr);
+        gap: 0.9rem;
+      }
+      .timeline-date {
+        grid-column: 2;
+        text-align: left;
+        margin-bottom: -0.5rem;
+      }
+      .timeline-dot { grid-column: 1; grid-row: 1 / span 2; }
+      .timeline-card { grid-column: 2; }
       .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .resume-panel { grid-template-columns: 1fr; }
       .nav-links { display: none; }
@@ -462,69 +503,62 @@
 
   <!-- EXPERIENCE -->
   <section id="experience">
-    <div class="section-label fade-in">Experience</div>
-    <div class="section-title fade-in">Where I've worked</div>
-    <p class="section-sub fade-in">A track record of impact across enterprise technology, mobility, and high-growth analytics teams.</p>
+    <div class="section-label fade-in">Timeline</div>
+    <div class="section-title fade-in">Where I've worked and studied</div>
+    <p class="section-sub fade-in">A simple view of my professional and academic path.</p>
 
-    <div class="timeline">
-
-      <div class="exp-item fade-in">
-        <div class="exp-meta">
-          <div class="exp-date">May 2024 — Apr 2026</div>
-          <div class="exp-company">Oracle US</div>
-        </div>
-        <div class="exp-content">
-          <h3>Business Intelligence Analyst</h3>
-          <ul>
-            <li>Built scalable analytics data models and pipelines by consolidating 10+ TB from Snowflake and Sybase into Oracle ADW, creating a governed source of truth for GTM analysis, sales planning, performance tracking, and leadership reporting.</li>
-            <li>Modernized 50+ Tableau and Power BI dashboards into Oracle Analytics Cloud, improving executive reporting, KPI visibility, revenue performance analysis, and self-service decision-making for 1,000+ users while reducing platform maintenance overhead by 30%.</li>
-            <li>Developed automated data quality and monitoring frameworks across SQL, ODI, PySpark, and Databricks pipelines, reducing production data defects by 70% and sustaining 99.9% data accuracy.</li>
-          </ul>
+    <div class="timeline-chart">
+      <div class="timeline-point fade-in">
+        <div class="timeline-date">May 2024 - Apr 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-name">Oracle US</div>
+          <div class="timeline-type">Work</div>
         </div>
       </div>
 
-      <div class="exp-item fade-in">
-        <div class="exp-meta">
-          <div class="exp-date">Feb 2022 — May 2024</div>
-          <div class="exp-company">Verra Mobility US</div>
-        </div>
-        <div class="exp-content">
-          <h3>Business Intelligence Analyst</h3>
-          <ul>
-            <li>Built and maintained SQL-driven reporting layers with DAX measures supporting 20+ Power BI and SSRS dashboards for sales planning, operational performance analysis, KPI tracking, and business decision support.</li>
-            <li>Served 500+ daily users while improving dashboard latency by 35% and increasing reliability for recurring business reporting.</li>
-            <li>Developed predictive analytics models across 10M+ records to support forecasting, capacity planning, and proactive decision-making, reducing operational exceptions by 18% and improving accuracy by 20%+.</li>
-          </ul>
+      <div class="timeline-point fade-in">
+        <div class="timeline-date">Feb 2022 - May 2024</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-name">Verra Mobility US</div>
+          <div class="timeline-type">Work</div>
         </div>
       </div>
 
-      <div class="exp-item fade-in">
-        <div class="exp-meta">
-          <div class="exp-date">Jun 2022 — Aug 2022</div>
-          <div class="exp-company">Oracle US</div>
-        </div>
-        <div class="exp-content">
-          <h3>Analytics Consultant Intern</h3>
-          <ul>
-            <li>Implemented the Enterprise Analytics Accelerator Lab on Oracle Analytics Cloud using agile project management to create reusable dashboard and reporting templates across 3-5 enterprise use cases.</li>
-            <li>Migrated 5M+ records into Oracle Autonomous Data Warehouse using SQL Developer, Data Pump, and version-controlled code repositories, achieving 100% data integrity validation.</li>
-            <li>Migrated 23% of on-premises semantic assets to Oracle Analytics Cloud, enabling governed access to 100+ downstream reports and dashboards for executive briefings and decision support.</li>
-          </ul>
+      <div class="timeline-point fade-in">
+        <div class="timeline-date">Jun 2022 - Aug 2022</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-name">Oracle US</div>
+          <div class="timeline-type">Internship</div>
         </div>
       </div>
 
-      <div class="exp-item fade-in">
-        <div class="exp-meta">
-          <div class="exp-date">Aug 2018 — Sep 2021</div>
-          <div class="exp-company">India</div>
+      <div class="timeline-point fade-in">
+        <div class="timeline-date">Sep 2021 - Jan 2023</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-name">Boston University</div>
+          <div class="timeline-type">Education</div>
         </div>
-        <div class="exp-content">
-          <h3>Data Analyst</h3>
-          <ul>
-            <li>At Anzy, revamped SQL and Tableau-based data management and reporting workflows, reducing data redundancy by 38% and improving visibility into finance, delivery, and performance metrics.</li>
-            <li>At Wizikey, conducted market, media, and sentiment analysis using Python and NLP across EdTech, Consumer Internet, FinTech, and VC sectors, reducing customer churn by 38% and increasing user traffic by 42%.</li>
-            <li>At ARM Infoserve, performed customer, product, and churn analysis using SQL and Neo4J graph queries across 1M+ records, contributing to 24% revenue growth and 13% higher customer retention.</li>
-          </ul>
+      </div>
+
+      <div class="timeline-point fade-in">
+        <div class="timeline-date">Aug 2018 - Sep 2021</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-name">Anzy, Wizikey, ARM Infoserve</div>
+          <div class="timeline-type">Work</div>
+        </div>
+      </div>
+
+      <div class="timeline-point fade-in">
+        <div class="timeline-date">Aug 2018</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-name">Amity School of Engineering &amp; Technology</div>
+          <div class="timeline-type">Education</div>
         </div>
       </div>
 
