@@ -176,33 +176,32 @@
     /* ── EXPERIENCE ── */
     #experience { background: var(--dark); }
     .timeline-chart {
-      max-width: 940px;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
+      gap: 1.2rem;
+      overflow-x: auto;
+      padding: 1.4rem 0 0.4rem;
     }
     .timeline-chart::before {
       content: '';
       position: absolute;
-      left: 10.5rem;
-      top: 0.4rem;
-      bottom: 0.4rem;
-      width: 1px;
-      background: linear-gradient(180deg, transparent, var(--border), transparent);
+      left: 0;
+      right: 0;
+      top: 2.25rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
     }
     .timeline-point {
-      display: grid;
-      grid-template-columns: 9rem 2.8rem minmax(0, 1fr);
-      align-items: center;
-      gap: 1rem;
-      padding: 1.1rem 0;
+      min-width: 220px;
+      position: relative;
+      padding-top: 2.2rem;
     }
     .timeline-date {
       color: var(--muted);
       font-size: 0.82rem;
       font-weight: 600;
-      text-align: right;
+      margin-bottom: 0.7rem;
     }
     .timeline-dot {
       width: 0.95rem;
@@ -211,7 +210,9 @@
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       border: 3px solid var(--dark);
       box-shadow: 0 0 0 1px var(--border);
-      justify-self: center;
+      position: absolute;
+      top: 0.38rem;
+      left: 0;
       z-index: 1;
     }
     .timeline-card {
@@ -221,13 +222,19 @@
       padding: 1rem 1.2rem;
     }
     .timeline-name { font-size: 1rem; font-weight: 800; }
-    .timeline-type {
+    .timeline-role {
       color: var(--accent2);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       margin-top: 0.2rem;
       text-transform: uppercase;
+    }
+    .timeline-pointer {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.6;
+      margin-top: 0.8rem;
     }
 
     /* ── PROJECTS ── */
@@ -380,18 +387,6 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .timeline-chart::before { left: 0.45rem; }
-      .timeline-point {
-        grid-template-columns: 1rem minmax(0, 1fr);
-        gap: 0.9rem;
-      }
-      .timeline-date {
-        grid-column: 2;
-        text-align: left;
-        margin-bottom: -0.5rem;
-      }
-      .timeline-dot { grid-column: 1; grid-row: 1 / span 2; }
-      .timeline-card { grid-column: 2; }
       .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .resume-panel { grid-template-columns: 1fr; }
       .nav-links { display: none; }
@@ -504,8 +499,8 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="section-label fade-in">Timeline</div>
-    <div class="section-title fade-in">Where I've worked and studied</div>
-    <p class="section-sub fade-in">A simple view of my professional and academic path.</p>
+    <div class="section-title fade-in">Where I've worked</div>
+    <p class="section-sub fade-in">A simple horizontal view of my professional path.</p>
 
     <div class="timeline-chart">
       <div class="timeline-point fade-in">
@@ -513,7 +508,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-name">Oracle US</div>
-          <div class="timeline-type">Work</div>
+          <div class="timeline-role">Business Intelligence Analyst</div>
+          <div class="timeline-pointer">Built governed analytics pipelines and modernized executive dashboards for planning, performance, and leadership reporting.</div>
         </div>
       </div>
 
@@ -522,7 +518,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-name">Verra Mobility US</div>
-          <div class="timeline-type">Work</div>
+          <div class="timeline-role">Business Intelligence Analyst</div>
+          <div class="timeline-pointer">Created reporting layers and automated stakeholder workflows across Power BI, SharePoint, Outlook, and Power Automate.</div>
         </div>
       </div>
 
@@ -531,16 +528,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-name">Oracle US</div>
-          <div class="timeline-type">Internship</div>
-        </div>
-      </div>
-
-      <div class="timeline-point fade-in">
-        <div class="timeline-date">Sep 2021 - Jan 2023</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-name">Boston University</div>
-          <div class="timeline-type">Education</div>
+          <div class="timeline-role">Analytics Consultant Intern</div>
+          <div class="timeline-pointer">Supported Oracle Analytics Cloud migrations and reusable reporting templates for enterprise analytics use cases.</div>
         </div>
       </div>
 
@@ -549,16 +538,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-card">
           <div class="timeline-name">Anzy, Wizikey, ARM Infoserve</div>
-          <div class="timeline-type">Work</div>
-        </div>
-      </div>
-
-      <div class="timeline-point fade-in">
-        <div class="timeline-date">Aug 2018</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-name">Amity School of Engineering &amp; Technology</div>
-          <div class="timeline-type">Education</div>
+          <div class="timeline-role">Data Analyst</div>
+          <div class="timeline-pointer">Delivered SQL, Tableau, Python, NLP, and graph analytics work across finance, media intelligence, and retention analysis.</div>
         </div>
       </div>
 
