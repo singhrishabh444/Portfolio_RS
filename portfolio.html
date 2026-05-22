@@ -175,58 +175,128 @@
 
     /* ── EXPERIENCE ── */
     #experience { background: var(--dark); }
-    .timeline-chart {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(220px, 1fr));
-      gap: 1.2rem;
+    .timeline-visual {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem;
       overflow-x: auto;
-      padding: 1.4rem 0 0.4rem;
     }
-    .timeline-chart::before {
+    .timeline-axis-wrap {
+      min-width: 860px;
+      padding: 0.2rem 0 1.2rem;
+    }
+    .timeline-years {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+    }
+    .timeline-axis {
+      position: relative;
+      height: 5rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(148,163,184,0.14), rgba(148,163,184,0.3), rgba(148,163,184,0.14));
+      box-shadow: inset 0 0 0 1px rgba(148,163,184,0.12);
+    }
+    .timeline-span {
+      position: absolute;
+      left: var(--start);
+      width: var(--width);
+      top: var(--top);
+      min-width: 1.8rem;
+      height: 0.75rem;
+      border-radius: 999px;
+      background: var(--job-color);
+      box-shadow: 0 0 24px var(--job-glow);
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, height .2s ease;
+    }
+    .timeline-span:hover,
+    .timeline-span:focus {
+      height: 1rem;
+      transform: translateY(-0.15rem);
+      box-shadow: 0 0 34px var(--job-glow);
+      outline: none;
+    }
+    .timeline-span::before,
+    .timeline-span::after {
       content: '';
       position: absolute;
-      left: 0;
-      right: 0;
-      top: 2.25rem;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      top: 50%;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 999px;
+      background: var(--job-color);
+      transform: translateY(-50%);
     }
-    .timeline-point {
-      min-width: 220px;
-      position: relative;
-      padding-top: 2.2rem;
+    .timeline-span::before { left: -0.12rem; }
+    .timeline-span::after { right: -0.12rem; }
+    .span-tooltip {
+      position: absolute;
+      left: 50%;
+      bottom: 1.4rem;
+      transform: translateX(-50%) translateY(0.4rem);
+      width: max-content;
+      max-width: 240px;
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.65rem 0.8rem;
+      color: var(--text);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 3;
+    }
+    .timeline-span:hover .span-tooltip,
+    .timeline-span:focus .span-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .span-tooltip strong {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    .span-tooltip span {
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+    .timeline-legend {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(180px, 1fr));
+      gap: 1rem;
+      min-width: 860px;
+      margin-top: 1rem;
+    }
+    .timeline-card {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--job-color);
+      border-radius: 12px;
+      padding: 1rem;
+      background: rgba(11,16,32,0.42);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .timeline-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--job-color);
+      background: rgba(15,23,42,0.78);
     }
     .timeline-date {
       color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-      margin-bottom: 0.7rem;
-    }
-    .timeline-dot {
-      width: 0.95rem;
-      height: 0.95rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border: 3px solid var(--dark);
-      box-shadow: 0 0 0 1px var(--border);
-      position: absolute;
-      top: 0.38rem;
-      left: 0;
-      z-index: 1;
-    }
-    .timeline-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.2rem;
-    }
-    .timeline-name { font-size: 1rem; font-weight: 800; }
-    .timeline-role {
-      color: var(--accent2);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      margin-bottom: 0.45rem;
+    }
+    .timeline-name { font-size: 0.98rem; font-weight: 800; }
+    .timeline-role {
+      color: var(--job-color);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
       margin-top: 0.2rem;
       text-transform: uppercase;
     }
@@ -390,6 +460,7 @@
       .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .resume-panel { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .timeline-visual { padding: 1rem; }
     }
     @media (max-width: 480px) {
       .impact-grid { grid-template-columns: 1fr; }
@@ -500,49 +571,59 @@
   <section id="experience">
     <div class="section-label fade-in">Timeline</div>
     <div class="section-title fade-in">Where I've worked</div>
-    <p class="section-sub fade-in">A simple horizontal view of my professional path.</p>
+    <p class="section-sub fade-in">A horizontal work timeline from 2008 to 2026, with each role shown as a colored span.</p>
 
-    <div class="timeline-chart">
-      <div class="timeline-point fade-in">
-        <div class="timeline-date">May 2024 - Apr 2026</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
+    <div class="timeline-visual fade-in">
+      <div class="timeline-axis-wrap">
+        <div class="timeline-years">
+          <span>2008</span>
+          <span>2026</span>
+        </div>
+        <div class="timeline-axis" aria-label="Work timeline from 2008 to 2026">
+          <div class="timeline-span" tabindex="0" style="--start: 59.2%; --width: 17.2%; --top: 3.35rem; --job-color: #38bdf8; --job-glow: rgba(56,189,248,0.38);">
+            <div class="span-tooltip"><strong>Anzy, Wizikey, ARM Infoserve</strong><span>Aug 2018 - Sep 2021</span></div>
+          </div>
+          <div class="timeline-span" tabindex="0" style="--start: 78.2%; --width: 13%; --top: 2.45rem; --job-color: #22c55e; --job-glow: rgba(34,197,94,0.34);">
+            <div class="span-tooltip"><strong>Verra Mobility US</strong><span>Feb 2022 - May 2024</span></div>
+          </div>
+          <div class="timeline-span" tabindex="0" style="--start: 80.6%; --width: 4%; --top: 1.55rem; --job-color: #f59e0b; --job-glow: rgba(245,158,11,0.34);">
+            <div class="span-tooltip"><strong>Oracle US Internship</strong><span>Jun 2022 - Aug 2022</span></div>
+          </div>
+          <div class="timeline-span" tabindex="0" style="--start: 91.2%; --width: 8.8%; --top: 0.65rem; --job-color: #818cf8; --job-glow: rgba(129,140,248,0.38);">
+            <div class="span-tooltip"><strong>Oracle US</strong><span>May 2024 - Apr 2026</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-legend">
+        <div class="timeline-card" style="--job-color: #818cf8;">
+          <div class="timeline-date">May 2024 - Apr 2026</div>
           <div class="timeline-name">Oracle US</div>
           <div class="timeline-role">Business Intelligence Analyst</div>
           <div class="timeline-pointer">Built governed analytics pipelines and modernized executive dashboards for planning, performance, and leadership reporting.</div>
         </div>
-      </div>
 
-      <div class="timeline-point fade-in">
-        <div class="timeline-date">Feb 2022 - May 2024</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
+        <div class="timeline-card" style="--job-color: #22c55e;">
+          <div class="timeline-date">Feb 2022 - May 2024</div>
           <div class="timeline-name">Verra Mobility US</div>
           <div class="timeline-role">Business Intelligence Analyst</div>
           <div class="timeline-pointer">Created reporting layers and automated stakeholder workflows across Power BI, SharePoint, Outlook, and Power Automate.</div>
         </div>
-      </div>
 
-      <div class="timeline-point fade-in">
-        <div class="timeline-date">Jun 2022 - Aug 2022</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
+        <div class="timeline-card" style="--job-color: #f59e0b;">
+          <div class="timeline-date">Jun 2022 - Aug 2022</div>
           <div class="timeline-name">Oracle US</div>
           <div class="timeline-role">Analytics Consultant Intern</div>
           <div class="timeline-pointer">Supported Oracle Analytics Cloud migrations and reusable reporting templates for enterprise analytics use cases.</div>
         </div>
-      </div>
 
-      <div class="timeline-point fade-in">
-        <div class="timeline-date">Aug 2018 - Sep 2021</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
+        <div class="timeline-card" style="--job-color: #38bdf8;">
+          <div class="timeline-date">Aug 2018 - Sep 2021</div>
           <div class="timeline-name">Anzy, Wizikey, ARM Infoserve</div>
           <div class="timeline-role">Data Analyst</div>
           <div class="timeline-pointer">Delivered SQL, Tableau, Python, NLP, and graph analytics work across finance, media intelligence, and retention analysis.</div>
         </div>
       </div>
-
     </div>
   </section>
 
