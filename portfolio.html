@@ -224,6 +224,16 @@
     .project-org { font-size: 0.73rem; color: var(--accent); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem; }
     .project-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
     .project-card p { color: var(--muted); font-size: 0.87rem; line-height: 1.7; margin-bottom: 1.2rem; }
+    .project-detail {
+      color: var(--muted);
+      font-size: 0.87rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+    .project-detail strong {
+      color: var(--text);
+      font-weight: 700;
+    }
     .tag-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
     .tag {
       background: rgba(99,102,241,0.12); color: #bfdbfe;
@@ -534,8 +544,10 @@
       <div class="project-card fade-in">
         <div class="project-icon">📊</div>
         <div class="project-org">Oracle US</div>
-        <h3>50+ Dashboard Modernization</h3>
-        <p>Moved legacy Tableau and Power BI reporting into Oracle Analytics Cloud, improving KPI visibility, revenue performance analysis, and self-service decision-making for 1,000+ users while reducing maintenance overhead by 30%.</p>
+        <h3>Executive Dashboard Modernization</h3>
+        <div class="project-detail"><strong>Problem:</strong> Leadership reporting was spread across legacy dashboards, making KPI visibility and revenue performance analysis harder to standardize.</div>
+        <div class="project-detail"><strong>Tools:</strong> Oracle Analytics Cloud, Power BI, Tableau, SQL, governed reporting layers.</div>
+        <div class="project-detail"><strong>Solution:</strong> Modernized reporting into Oracle Analytics Cloud so executives and business users could access cleaner dashboards, consistent KPIs, and self-service insights from one governed analytics environment.</div>
         <div class="tag-row">
           <span class="tag">Oracle Analytics Cloud</span>
           <span class="tag">Power BI</span>
@@ -547,8 +559,10 @@
       <div class="project-card fade-in">
         <div class="project-icon">🗄️</div>
         <div class="project-org">Oracle US</div>
-        <h3>10TB+ Governed Data Foundation</h3>
-        <p>Consolidated Snowflake and Sybase data into Oracle ADW to create a governed source of truth for GTM analysis, sales planning, performance tracking, and leadership reporting, improving query latency by 40%.</p>
+        <h3>Governed Analytics Data Foundation</h3>
+        <div class="project-detail"><strong>Problem:</strong> GTM, sales planning, and performance reporting depended on fragmented data sources that slowed analysis and created inconsistent definitions.</div>
+        <div class="project-detail"><strong>Tools:</strong> Snowflake, Sybase, Oracle ADW, SQL, data modeling, ETL/ELT pipelines.</div>
+        <div class="project-detail"><strong>Solution:</strong> Consolidated source data into Oracle ADW and built governed analytics models that gave teams a reliable source of truth for planning, tracking, and leadership reporting.</div>
         <div class="tag-row">
           <span class="tag">Snowflake</span>
           <span class="tag">Oracle ADW</span>
@@ -558,15 +572,18 @@
       </div>
 
       <div class="project-card fade-in">
-        <div class="project-icon">📈</div>
+        <div class="project-icon">⚙️</div>
         <div class="project-org">Verra Mobility</div>
-        <h3>10M+ Record Forecasting Model</h3>
-        <p>Developed predictive analytics models across 10M+ records to support forecasting, capacity planning, performance analysis, and proactive business decision-making, reducing operational exceptions by 18%.</p>
+        <h3>Operator Reporting Workflow Automation</h3>
+        <div class="project-detail"><strong>Problem:</strong> Stakeholders had to spend hours pulling operator-specific data manually, combining files, and navigating a complex reporting process before they could review performance.</div>
+        <div class="project-detail"><strong>Tools:</strong> Power Automate, Outlook, SharePoint, Power BI, scheduled refreshes.</div>
+        <div class="project-detail"><strong>Solution:</strong> Created an automated workflow that captured operator data through Outlook, stored it in SharePoint, refreshed it daily, and connected SharePoint to Power BI so stakeholders could review everything in one central dashboard.</div>
         <div class="tag-row">
-          <span class="tag">Python</span>
-          <span class="tag">Predictive Analytics</span>
-          <span class="tag">Forecasting</span>
-          <span class="tag">Operational Insights</span>
+          <span class="tag">Power Automate</span>
+          <span class="tag">Outlook</span>
+          <span class="tag">SharePoint</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Workflow Automation</span>
         </div>
       </div>
 
@@ -574,7 +591,9 @@
         <div class="project-icon">🤖</div>
         <div class="project-org">Personal AI Project</div>
         <h3>RAG Chatbot API</h3>
-        <p>Built a Flask API backend for a retrieval-augmented chatbot that embeds a local knowledge base with Ollama, retrieves the top matching context using cosine similarity, and streams Llama 3.2 responses through a server-sent events endpoint.</p>
+        <div class="project-detail"><strong>Problem:</strong> A chatbot needed to answer from a controlled local knowledge base instead of making up information or relying on broad model memory.</div>
+        <div class="project-detail"><strong>Tools:</strong> Flask, Ollama, local embeddings, cosine similarity, Llama 3.2, server-sent events.</div>
+        <div class="project-detail"><strong>Solution:</strong> Built an API that embeds local content, retrieves the most relevant context for each question, and streams grounded responses through a chat endpoint.</div>
         <div class="tag-row">
           <span class="tag">Flask</span>
           <span class="tag">Ollama</span>
